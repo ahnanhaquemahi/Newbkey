@@ -2,7 +2,7 @@
 
 # Define important paths and file names
 TRICKY_DIR="/data/adb/tricky_store"
-REMOTE_URL="https://raw.githubusercontent.com/dpejoh/yurikey/main/conf"
+REMOTE_URL="https://raw.githubusercontent.com/ahnanhaqeumahi/Newbkey/main/conf"
 TARGET_FILE="$TRICKY_DIR/keybox.xml"
 BACKUP_FILE="$TRICKY_DIR/keybox.xml.bak"
 TMP_REMOTE="$TRICKY_DIR/remote_keybox.tmp"
@@ -12,13 +12,13 @@ DEPENDENCY_MODULE="/data/adb/modules/tricky_store"
 # Show UI banner
 ui_print ""
 ui_print "*********************************"
-ui_print "*****Yuri Keybox Installer*******"
+ui_print "*****Newb Keybox Installer*******"
 ui_print "*********************************"
 ui_print ""
 
-# Remove old module if legacy path exists (lowercase 'yurikey')
-if [ -d "/data/adb/modules/yurikey" ]; then
-  touch /data/adb/modules/yurikey/remove
+# Remove old module if legacy path exists (lowercase 'Newbkey')
+if [ -d "/data/adb/modules/Newbkey" ]; then
+  touch /data/adb/modules/Newbkey/remove
 fi
 
 # Check if Tricky Store module is installed (required dependency)
@@ -66,13 +66,13 @@ update_keybox() {
   if [ -f "$TARGET_FILE" ]; then
     # If the new one is identical, skip update
     if cmp -s "$TARGET_FILE" "$TMP_REMOTE"; then
-      ui_print "- Existing Yuri Keybox found. No changes made."
+      ui_print "- Existing Newb Keybox found. No changes made."
       rm -f "$TMP_REMOTE"
       rm -rf "$SCRIPT_REMOTE"
       return
     else
       # If the file differs, back up the old one
-      ui_print "- Existing keybox not by Yuri."
+      ui_print "- Existing keybox not by Newb."
       ui_print "- Creating a backup..."
       mv "$TARGET_FILE" "$BACKUP_FILE"
       rm -rf "$SCRIPT_REMOTE"
@@ -88,14 +88,9 @@ update_keybox() {
 }
 
 # Start main logic
-ui_print "- Checking if there is an Yuri Keybox..."
+ui_print "- Checking if there is an Newb Keybox..."
 mkdir -p "$TRICKY_DIR" # Make sure the directory exists
 update_keybox          # Begin the update process
 
-# read some device info
-if [ -f /data/adb/modules_update/Yurikey/webroot/common/device-info.sh ]; then
-  sh /data/adb/modules_update/Yurikey/webroot/common/device-info.sh
-elif [ -f /data/adb/modules/yurikey/webroot/common/device-info.sh ]; then
-  sh /data/adb/modules/yurikey/webroot/common/device-info.sh
-fi
+
 

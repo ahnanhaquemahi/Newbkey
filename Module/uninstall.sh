@@ -15,8 +15,3 @@ if [ -f "$BACKUP_FILE" ]; then
 fi
 }
 
-if [ -f "$TARGET_FILE" ]; then
-  if grep -q "yuriiroot" "$TARGET_FILE"; then
-    backup
-  fi
-fi
